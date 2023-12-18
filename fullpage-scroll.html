@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Scroll Snap - Image Carousel</title>
+    <link rel="stylesheet" href="style-fullpage-scroll.css">
+    
+</head>
+<body>
+    <header class="header">
+        <h1>fullPage</h1>
+    </header>
+    <nav class="content-nav">
+        <ul class="content-nav-list">
+            <li class="content-nav-item">
+                <a href="#first"></a>
+            </li>
+            <li class="content-nav-item">
+                <a href="#second"></a>
+            </li>
+            <li class="content-nav-item">
+                <a href="#third"></a>
+            </li>
+            <li class="content-nav-item">
+                <a href="#fourth"></a>
+            </li>
+        </ul>
+    </nav>
+    <main class="wrapper">
+        <section class="content" id="first">
+            <h2>Made with css native</h2>
+        </section>
+        <section class="content" id="second">
+            <h2>Modern browser support</h2>
+        </section>
+        <section class="content -nested" id="third">
+            <h2 class="title">easy to configure and customize
+            </h2>
+            <div class="nested-wrap">
+                <div class="nested-content">
+                    <h3>1</h3>
+                </div>
+                <div class="nested-content">
+                    <h3>2</h3>
+                </div>
+                <div class="nested-content">
+                    <h3>3</h3>
+                </div>
+                <div class="nested-content">
+                    <h3>4</h3>
+                </div>
+            </div>
+            <p class="note">scroll right</p>
+            <span class="chevron-right"></span>
+        </section>
+        <section class="content flex-column" id="fourth">
+            <h2>Easy to use</h2>
+            <div class="content-img">
+                <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?q=80&w=2835&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

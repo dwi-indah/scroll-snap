@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Scroll Snap</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>CSS Scroll Snap</h1>
+    </header>
+    <main class="wrap">
+        <aside class="aside">
+            <p>On this page</p>
+            <ul class="content-nav">
+                <li>
+                    <a href="#introduction">introduction</a>
+                </li>
+                <li>
+                    <a href="#basic-usage">basic usage</a>
+                </li>
+                <li>
+                    <a href="#parent-properties">parent properties</a>
+                </li>
+                <li>
+                    <a href="#child-properties">child properties</a>
+                </li>
+                <li>
+                    <a href="#example">example</a>
+                </li>
+                <li>
+                    <a href="#implementation">implementation</a>
+                </li>
+            </ul>
+        </aside>
+        <section class="content">
+            <article id="introduction">
+                <h2 class="title">Introduction</h2>
+                <p>
+                    The “scroll-snap” CSS property is used to control the “snapping” behavior of a container’s scroll positions. “scroll-snap” property, allow web developer create a smoother scrolling experience, especially in cases where the content is divided into distinct sections or elements.
+                </p>
+            </article>
+            <article id="basic-usage">
+                <h2 class="title">Basic Usage</h2>
+                <p>
+                    Scroll snapping is used in combination with the “scroll-snap-type” property on a container element and the “scroll-snap-align” property on elements inside it
+                </p>
+                <pre class="html"><code>&lt;section class="container"&gt;
+    &lt;div class="class"&gt; &lt;/div&gt;
+    &lt;div class="class"&gt; &lt;/div&gt;
+    &lt;div class="class"&gt; &lt;/div&gt;
+    &lt;div class="class"&gt; &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                <pre class="css"><code>.container {
+    scroll-snap-type: y mandatory
+}
+
+.child {
+    scroll-snap-align: start
+}</code></pre>
+                <p>result</p>
+                <div class="container y-axis-mandatory align-start">
+                    <div class="child">1</div>
+                    <div class="child">2</div>
+                    <div class="child">3</div>
+                    <div class="child">4</div>
+                    <div class="child">5</div>
+                    <div class="child">6</div>
+                </div>
+            </article>
+            <article id="parent-properties">
+                <h2 class="title">Parent Properties</h2>
+                <section class="subcontent">
+                    <h3 class="subtitle">#scroll-snap-type</h3>
+                    <p>“scroll-snap-type” property is applied to the container(parent) element. It defines the scrolling axis and the type of snapping behavior.</p>
+                    <ul class="content-list">
+                        <li>
+                            <span>scroll-snap-type: none;</span>
+                            <p>no snapping behavior.</p>
+                        </li>
+                        <li>
+                            <span>scroll-snap-type: x;</span>
+                            <p>the scroll container snaps to snap position in its horizontal axis only.</p>
+                        </li>
+                        <li>
+                            <span>scroll-snap-type: y;</span>
+                            <p>the scroll container snaps to snap position in its vertical axis only.
+                            </p>
+                        </li>
+                        <li>
+                            <span>scroll-snap-type: both;</span>
+                            <p>the scroll container snaps to snap position in both of its axes independently (potentially snapping to different elements in each axis).
+                            </p>
+                        </li>
+                        <li>
+                            <span>scroll-snap-type: mandatory;</span>
+                            <p>the scrolling will always snap to the closest snap point after scroll operation.</p>
+                        </li>
+                        <li>
+                            <span>scroll-snap-type: proximity;</span>
+                            <p>the scrolling will snap to closest snap point if it’s within a certain distance.</p>
+                        </li>
+                    </ul>
+                </section>
+                <section class="subcontent">
+                    <h3 class="subtitle">#"mandatory" VS "proximity"</h3>
+                    <h4>mandatory</h4>
+                    <p>the scrolling will always snap to the nearest snap point after scroll operation, regardless of how far or close the scroll position is to the snap points. In other words, it enforces a strict snapping behavior, ensuring that the scroll position align precisely with a snap point.</p>
+                    <h4>proximity</h4>
+                    <p>the scrolling will snap to the nearest snap point only if it’s within a certain distance. If the scroll position is close enough to a snap point, it will snap, otherwise, it will not. </p>
+                </section>
+                <section class="subcontent">
+                    <h3 class="subtitle">#scroll-padding</h3>
+                    <p>“scroll-padding” property in CSS is used to set the padding area for a scroll container. The “scroll-padding” property allows web developer to define additional space around the content inside the scroll container. The extra space influences the calculation of the snap points.
+
+                    It can take one to four values, each representing the padding for the top, right, bottom, and left sides. These value can be specified in pixel, percentages, or other length units.</p>
+                </section>
+            </article>
+            <article id="child-properties">
+                <h2 class="title">Child Properties</h2>
+                <section class="subcontent">
+                    <h3 class="subtitle">#scroll-snap-align</h3>
+                    <p>“scroll-snap-align” is applied to the child elements inside the container. It defines where the snap point of each child element should be.</p>
+                    <ul class="content-list">
+                        <li>
+                            <span>scroll-snap-align: start;</span>
+                            <p>the snap point is at the start of the element.</p>
+                        </li>
+                        <li>
+                            <span>scroll-snap-align: center;</span>
+                            <p>the snap point is the end of the element.</p>
+                        </li>
+                        <li>
+                            <span>scroll-snap-align: end;</span>
+                            <p>the snap point is at the end of the element.
+                            </p>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="subcontent">
+                    <h3 class="subtitle">#scroll-snap-stop</h3>
+                    <p>“scroll-snap-stop” property defines whether or not the scroll container is allowed to “pass over” possible snap position.
+
+                    The effect of this property can be noticed on device with a touchpad.</p>
+                    <ul class="content-list">
+                        <li>
+                            <span>scroll-snap-stop: normal;</span>
+                            <p>when the visual viewport of this element’s scroll container is scrolled, it may “pas over” possible snap positions</p>
+                        </li>
+                        <li>
+                            <span>scroll-snap-stop: always;</span>
+                            <p>tthe scroll container must not “pass over” a possible snap position, and must snap to the first of this element’s a snap position</p>
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="subcontent">
+                    <h3 class="subtitle">#scroll-margin</h3>
+                    <p>“scroll-margin” property is used to set additional space around scrollable elements. This property controls how far the element can fit into the scrollable area before “scroll snapping” of shifting of neighboring elements begins.
+
+                        It can take one to four values, each representing the padding for the top, right, bottom, and left sides. These value can be specified in pixel, percentages, or other length units.
+                    </p>
+                </section>
+
+            </article>
+            <article id="example">
+                <h2 class="title">Example</h2>
+                <h3 class="subtitle">#scroll-snap-type</h3>
+                <div class="section subcontent ex">
+                    <div class="example">
+                        <h4>x mandatory</h4>
+                        <div class="container x-axis-mandatory align-start">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                    <div class="example">
+                        <h4>x proximity</h4>
+                        <div class="container x-axis-proximity align-start">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section subcontent ex">
+                    <div class="example">
+                        <h4>y mandatory</h4>
+                        <div class="container y-axis-mandatory align-start">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                    <div class="example">
+                        <h4>y proximity</h4>
+                        <div class="container y-axis-proximity align-start">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="subtitle">#scroll-padding</h3>
+                <div class="section subcontent ex">
+                    <div class="example">
+                        <h4>padding 20px on container element</h4>
+                        <div class="container y-axis-mandatory align-start padding">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="subtitle">#scroll-snap-align</h3>
+                <div class="section subcontent ex">
+                    <div class="example">
+                        <h4>x-axis with align start</h4>
+                        <div class="container x-axis-mandatory align-start x-small">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                    <div class="example">
+                        <h4>x-axis with align center</h4>
+                        <div class="container x-axis-mandatory align-center x-small">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                    <div class="example">
+                        <h4>x-axis with align end</h4>
+                        <div class="container x-axis-mandatory align-end x-small">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section subcontent ex">
+                    <div class="example">
+                        <h4>y-axis with align start</h4>
+                        <div class="container y-axis-mandatory align-start y-small">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                    <div class="example">
+                        <h4>y-axis with align center</h4>
+                        <div class="container y-axis-mandatory align-center y-small">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                    <div class="example">
+                        <h4>y-axis with align end</h4>
+                        <div class="container y-axis-mandatory align-end y-small">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="subtitle">#scroll-snap-stop</h3>
+                <div class="section subcontent ex">
+                    <div class="example">
+                        <h4>y-axis with stop normal</h4>
+                        <div class="container y-axis-mandatory align-start normal">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                    <div class="example">
+                        <h4>y-axis with stop always</h4>
+                        <div class="container y-axis-mandatory align-start always">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="subtitle">#scroll-margin</h3>
+                <div class="section subcontent ex">
+                    <div class="example">
+                        <h4>margin right & left on 2nd child</h4>
+                        <div class="container x-axis-mandatory align-center margin">
+                            <div class="child">1</div>
+                            <div class="child">2</div>
+                            <div class="child">3</div>
+                            <div class="child">4</div>
+                            <div class="child">5</div>
+                            <div class="child">6</div>
+                        </div>
+                    </div>
+                </div>
+                
+            </article>
+            <article id="implementation">
+                <h2 class="title">Implementation</h2>
+                <div class="example">
+                    <h3 class="subtitle">#Image Carousel</h3>
+                    <div class="example-widget">
+                        <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="xxMvrOR" data-user="dwi-indah" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                            <span>See the Pen <a href="https://codepen.io/dwi-indah/pen/xxMvrOR">
+                            image carousel with scroll-snap</a> by Dwi Indah (<a href="https://codepen.io/dwi-indah">@dwi-indah</a>)
+                            on <a href="https://codepen.io">CodePen</a>.</span>
+                          </p>
+                          <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                    </div>
+                    <a href="https://dwi-indah.github.io/scroll-snap/image-carousel.html" class="example-link" target="_blank">link to image carousel</a>
+                </div>
+                <div class="example">
+                    <h3 class="subtitle">#fullPage scroll</h3>
+                    <div class="example-widget">
+                        <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="abXewNm" data-user="dwi-indah" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                            <span>See the Pen <a href="https://codepen.io/dwi-indah/pen/abXewNm">
+                            fullPage.js with scroll-snap</a> by Dwi Indah (<a href="https://codepen.io/dwi-indah">@dwi-indah</a>)
+                            on <a href="https://codepen.io">CodePen</a>.</span>
+                          </p>
+                          <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                    </div>
+                    <a href="https://dwi-indah.github.io/scroll-snap/fullpage-scroll.html" class="example-link" target="_blank">link to fullpage scroll</a>
+                </div>
+                <div class="example">
+                    <h3 class="subtitle">2D gallery</h3>
+                    <div class="example-widget">
+                        <p class="codepen" data-height="300" data-default-tab="html,result" data-slug-hash="abXewmm" data-user="dwi-indah" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+                            <span>See the Pen <a href="https://codepen.io/dwi-indah/pen/abXewmm">
+                            2d gallery with scroll-snap</a> by Dwi Indah (<a href="https://codepen.io/dwi-indah">@dwi-indah</a>)
+                            on <a href="https://codepen.io">CodePen</a>.</span>
+                          </p>
+                          <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+                    </div>
+                    <a href="https://dwi-indah.github.io/scroll-snap/2d-gallery.html" class="example-link" target="_blank">link to 2d gallery</a>
+                </div>
+            </article>
+            <article>
+                <h2 class="title">Thanks To</h2>
+                <ul>
+                    <li>
+                        <a href="https://web.dev/articles/css-scroll-snap" target="_blank">https://web.dev/articles/css-scroll-snap</a>
+                    </li>
+                    <li>
+                        <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap" target="_blank">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_scroll_snap</a>
+                    </li>
+                    <li>
+                        <a href="https://glitch.com/~snap" target="_blank">https://glitch.com/~snap</a>
+                    </li>
+                    <li>
+                        <a href="https://web.dev/patterns/web-vitals-patterns/carousels/carousel-autoplay#js" target="_blank">https://web.dev/patterns/web-vitals-patterns/carousels/carousel-autoplay#js</a>
+                    </li>
+                </ul>
+            </article>
+        </section>
+    </main>
+    <footer>Made with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M20.205 4.791a5.938 5.938 0 0 0-4.209-1.754A5.906 5.906 0 0 0 12 4.595a5.904 5.904 0 0 0-3.996-1.558 5.942 5.942 0 0 0-4.213 1.758c-2.353 2.363-2.352 6.059.002 8.412L12 21.414l8.207-8.207c2.354-2.353 2.355-6.049-.002-8.416z"></path></svg> form Indonesia</footer>
+</body>
+</html>
